@@ -49,7 +49,7 @@ export default function TemporaryDrawer() {
         {['Home', 'Products', 'Categories', 'Cart'].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
-              <ListItemIcon>
+              <ListItemIcon >
                 {text === 'Home' ? <HiOutlineHome size={30} strokeWidth={1.5}/> :
                 text === 'Products' ? <HiOutlineArchiveBox size={30} strokeWidth={1.5}/> :
                 text === 'Categories' ? <HiOutlineListBullet size={30} strokeWidth={1.5}/> : 
@@ -67,8 +67,8 @@ export default function TemporaryDrawer() {
   return (
     <div>
       {['left'].map((anchor) => (
-        <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>
+        <div key={anchor} className={'absolute'}>
+          <Button onClick={toggleDrawer(anchor, true)} className={''}>
             <HiOutlineMenuAlt2 size={40} strokeWidth={1.5} />
           </Button>
           <Drawer
@@ -79,7 +79,7 @@ export default function TemporaryDrawer() {
           >
             {list(anchor)}
           </Drawer>
-        </React.Fragment>
+        </div>
       ))}
     </div>
   );
