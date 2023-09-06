@@ -3,9 +3,9 @@ import React from 'react'
 
 import { primaryButtonStyling } from './PrimaryButton'
 
-const ButtonLink = ({children, link}) => {
+const ButtonLink = ({children, link, addClass}) => {
   return (
-      <Link className={primaryButtonStyling} href={link}>{...children}</Link>
+      <Link href={link} className={addClass}>{children}</Link>
   )
 }
 

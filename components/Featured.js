@@ -16,7 +16,9 @@ const Featured = ({product}) => {
               {product.description}
             </div>
             <div className='flex gap-5'>
-              <ButtonLink link={'/products/'+product._id}>More Info</ButtonLink>
+              <ButtonLink link={'/products/'+product._id}>
+                <PrimaryButton type={"primary"} text={"more info"}/>
+              </ButtonLink>
               <PrimaryButton type={"cart"}/>
             </div>
             

@@ -3,6 +3,7 @@ import Nav from "@/components/Nav";
 import NewProducts from "@/components/NewProducts";
 import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/models/Product";
+import Head from "next/head";
 
 
 export default function Home({featurdProduct, recentProducts}) {
@@ -10,7 +11,7 @@ export default function Home({featurdProduct, recentProducts}) {
   return (
 
     <>
-
+      
       <Nav />
       <Featured product={featurdProduct}/>
       <NewProducts product={recentProducts} />
