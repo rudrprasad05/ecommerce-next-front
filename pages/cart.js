@@ -5,6 +5,9 @@ import { HiOutlineCash } from 'react-icons/hi'
 import axios from 'axios';
 import CardProduct from '@/components/CardProduct';
 import PayPalCheckOutButton from '@/components/PayPalCheckOutButton';
+import GooglePlay from '@/components/GooglePlay';
+import AnotherGoogleButton from '@/components/AnotherGoogleButton';
+import GooglePayButton from '@google-pay/button-react'
 
 
 
@@ -63,7 +66,7 @@ const CartPage = () => {
     }
     
     setDomLoaded(true);
-    console.log(paypalProduct)
+
     // addPayPalScript()
 
   }, [])
@@ -136,7 +139,63 @@ const CartPage = () => {
                     <HiOutlineCash size={30} strokeWidth={1.2}/>
                 </span>
               </button>
-              <PayPalCheckOutButton props={paypalProduct}/>
+              {/* <PayPalCheckOutButton props={paypalProduct}/> */}
+              <div id='google-pay'>
+                {/* <GooglePlay/> */}
+                <GooglePayButton
+        environment="TEST"
+        paymentRequest={{
+          apiVersion: 2,
+          apiVersionMinor: 0,
+          allowedPaymentMethods: [
+            {
+              type: 'CARD',
+              parameters: {
+                allowedAuthMethods: ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
+                allowedCardNetworks: ['MASTERCARD', 'VISA'],
+              },
+              tokenizationSpecification: {
+                type: 'PAYMENT_GATEWAY',
+                parameters: {
+                  gateway: 'example',
+                  gatewayMerchantId: 'exampleGatewayMerchantId',
+                },
+              },
+            },
+          ],
+          merchantInfo: {
+            merchantId: '12345678901234567890',
+            merchantName: 'Demo Merchant',
+          },
+          transactionInfo: {
+            totalPriceStatus: 'FINAL',
+            totalPriceLabel: 'Total',
+            totalPrice: total.toString(),
+            currencyCode: 'USD',
+            countryCode: 'US',
+          },
+          shippingAddressRequired: true,
+          callbackIntents: ['SHIPPING_ADDRESS', 'PAYMENT_AUTHORIZATION'],
+        }}
+        onLoadPaymentData={paymentRequest => {
+          console.log('Success', paymentRequest);
+        }}
+        onPaymentAuthorized={paymentData => {
+            console.log('Payment Authorised Success', paymentData)
+            return { transactionState: 'SUCCESS'}
+          }
+        }
+        onPaymentDataChanged={paymentData => {
+            console.log('On Payment Data Changed', paymentData)
+            return { }
+          }
+        }
+        existingPaymentMethodRequired='false'
+        buttonColor='black'
+        buttonType='Buy'
+      />
+              </div>
+              
             </form>
           }
 
