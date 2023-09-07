@@ -26,7 +26,7 @@ module.exports = {
         "100v": "100vh",
       },
       fontFamily: {
-        'roboto': ['"Roboto"', 'Helvatica'],
+        'roboto': ['Roboto', 'Helvetica'],
       },
       backgroundColor: {
         'primary': '#a855f7',

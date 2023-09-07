@@ -8,7 +8,6 @@
 
 @layer base {
     html {
-      
       @apply bg-[#020811] font-roboto
     }
   }

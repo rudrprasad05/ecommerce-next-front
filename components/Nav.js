@@ -104,9 +104,7 @@ export default function TemporaryDrawer() {
           >
             {list(anchor)}
           </Drawer>
-          <div className='p-5 text-6xl text-white text-center w-screen'>
-            Cart
-          </div>
+
         </div>
       ))}
     </div>

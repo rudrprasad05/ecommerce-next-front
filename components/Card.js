@@ -16,11 +16,27 @@ const Card = ({product}) => {
     const desc = product.description.split('').slice(0,50);
     const [domloaded, setDomloaded] = useState(false)
     const [openSnackBar, setOpenSnackBar] = useState(false)
+    const [fill, setFill] = useState([])
+    const [ratingCounter, setRatingCounter] = useState(0)
 
     useEffect(() => {
         setDomloaded(true)
     }, [])
 
+    const doTheRating = (item) => {
+        setRatingCounter(0)
+        setFill(prev => {
+            
+            let arr =  [];
+            for(let i=1; i <= item; i++){
+                arr.push(i)
+                setRatingCounter(item)
+            }
+            console.log(arr)
+            return arr
+        })
+        
+    }
     
     return (
         <>
@@ -46,13 +62,17 @@ const Card = ({product}) => {
                         </div>
                         <div className='flex gap-2 items-center'>
                             <div className='flex gap-[2px] relative'>
-                            {[1,2,3,4,5].map(() => (
-                                <span className=''><HiOutlineStar className='stroke-fuchsia-300'/></span>
+                            {[1,2,3,4,5].map((item,i) => (
+                                <>
+                                    <span className=''><HiOutlineStar fill={fill.includes(item) ? '#ffff00' : ''} onClick={() => (doTheRating(item))} className='stroke-fuchsia-300'/></span>
+
+                                </>
+                                
                             ))}
                                 
                             </div>
                             <div className='text-secondary'>
-                                5.0
+                                {ratingCounter}
                             </div>
                             
                         </div>
