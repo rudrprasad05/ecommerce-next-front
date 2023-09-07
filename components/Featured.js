@@ -5,14 +5,17 @@ import PrimaryButton from './PrimaryButton'
 const Featured = ({product}) => {
   return (
     <>
-      <div className='h-50v bg-gray-400 grid items-center'>
+      <div className='bg-background grid items-center py-24 text-white'>
         <div className='w-4/5 mx-auto flex justify-between items-center gap-10 h-40v my-auto '>
 
           <div className='flex flex-col justify-around h-full'>
-            <div className='text-5xl'>
+            <div className='text-6xl text-purple-500'>
+              Featured Product
+            </div>
+            <div className='text-3xl text-fuchsia-300'>
               {product.title}
             </div>
-            <div className='text-xl'>
+            <div className='text-lg'>
               {product.description}
             </div>
             <div className='flex gap-5'>

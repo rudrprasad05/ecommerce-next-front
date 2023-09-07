@@ -46,33 +46,33 @@ export default function TemporaryDrawer() {
 
   const list = (anchor) => (
     <Box
-      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
+      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250, height: "100vh", background: '#020811'}}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
         {['Home', 'Products', 'Categories'].map((text, index) => (
-          <ListItem key={text} disablePadding sx={{width: 1}}>
-            <ButtonLink link={text != 'Home' ? `/${text.toLowerCase()}` : "/"} addClass={"w-full"}>
-              <ListItemButton sx={{width: 1}}>
+          <ListItem key={text} disablePadding sx={{width: 0.9, margin: '12px auto', borderRadius: '5px', }}>
+            <ButtonLink link={text != 'Home' ? `/${text.toLowerCase()}` : "/"} addClass={"w-full text-white"}>
+              <ListItemButton sx={{width: 1, }}>
                 <ListItemIcon >
-                  {text === 'Home' ? <HiOutlineHome size={30} strokeWidth={1.5}/> :
-                  text === 'Products' ? <HiOutlineArchiveBox size={30} strokeWidth={1.5}/> :
-                  text === 'Categories' ? <HiOutlineListBullet size={30} strokeWidth={1.5}/> : <div></div>}
+                  {text === 'Home' ? <HiOutlineHome size={30} strokeWidth={1.5} className={'stroke-purple-500'}/> :
+                  text === 'Products' ? <HiOutlineArchiveBox size={30} strokeWidth={1.5} className={'stroke-purple-500'}/> :
+                  text === 'Categories' ? <HiOutlineListBullet size={30} strokeWidth={1.5} className={'stroke-purple-500'}/> : <div></div>}
                 </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItemButton>
             </ButtonLink>
           </ListItem>
         ))}
-        <ListItem disablePadding sx={{width: 1}}>
-          <ButtonLink link={'/cart'} addClass={"w-full"}>
+        <ListItem disablePadding sx={{width: 0.9, margin: '12px auto', borderRadius: '5px'}}>
+          <ButtonLink link={'/cart'} addClass={"w-full text-white"}>
             <ListItemButton sx={{width: 1}}>
               <ListItemIcon >
                 <div className='relative'>
-                  <HiOutlineShoppingCart size={30} strokeWidth={1.5}/>
-                  <div className='absolute w-6 h-6 rounded-full bg-blue-500 text-white text-center bottom-3/4 left-full text-sm flex items-center justify-center'>
+                  <HiOutlineShoppingCart size={30} strokeWidth={1.5} className={'stroke-purple-500'}/>
+                  <div className='absolute w-6 h-6 rounded-full bg-purple-500 text-white text-center bottom-3/4 left-full text-sm flex items-center justify-center'>
                       <p>
                         {cartCount}
                       </p>
@@ -91,18 +91,22 @@ export default function TemporaryDrawer() {
   return (
     <div>
       {['left'].map((anchor) => (
-        <div key={anchor} className={'sticky'}>
+        <div key={anchor} className={'absolute z-20 flex items-center'}>
           <Button onClick={toggleDrawer(anchor, true)} className={''}>
-            <HiOutlineMenuAlt2 size={40} strokeWidth={1.5} />
+            <HiOutlineMenuAlt2 size={50} strokeWidth={1.7} className={'stroke-purple-500'}/>
           </Button>
           <Drawer
             anchor={anchor}
             open={state[anchor]}
             onClose={toggleDrawer(anchor, false)}
+            sx={{background: '#02081105'}}
 
           >
             {list(anchor)}
           </Drawer>
+          <div className='p-5 text-6xl text-white text-center w-screen'>
+            Cart
+          </div>
         </div>
       ))}
     </div>

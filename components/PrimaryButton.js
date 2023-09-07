@@ -3,7 +3,7 @@ import { HiOutlineShoppingCart } from 'react-icons/hi'
 
 import ButtonLink from './ButtonLink'
 
-export const primaryButtonStyling = "rounded-lg bg-blue-500 shadow-md px-5 py-2"
+export const primaryButtonStyling = "rounded-lg bg-primary capitalize shadow-md px-5 py-2"
 
 
 const PrimaryButton = ({text, type, link}) => {

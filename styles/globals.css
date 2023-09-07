@@ -8,6 +8,7 @@
 
 @layer base {
     html {
-      font-family: "Comic Sans", Times, serif;
+      
+      @apply bg-[#020811] font-roboto
     }
   }

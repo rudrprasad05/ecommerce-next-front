@@ -24,7 +24,20 @@ module.exports = {
         "80v": "80vh",
         "90v": "90vh",
         "100v": "100vh",
-    },
+      },
+      fontFamily: {
+        'roboto': ['"Roboto"', 'Helvatica'],
+      },
+      backgroundColor: {
+        'primary': '#a855f7',
+        'background': '#020811',
+        'secondary': '#f0abfc',
+      },
+      textColor: {
+        'primary': '#a855f7',
+        'secondary': '#f0abfc',
+        'background': '#020811',
+      }
     },
   },
   plugins: [],

@@ -4,16 +4,14 @@ import Nav from "@/components/Nav";
 import { HiOutlineCash } from 'react-icons/hi'
 import axios from 'axios';
 import CardProduct from '@/components/CardProduct';
-import PayPalCheckOutButton from '@/components/PayPalCheckOutButton';
-
+import Layout from '@/components/Layout';
 
 
 const CartPage = () => {
 
   const inputStyle = `
-  rounded-md border border-blue-500 px-3 py-1
+  rounded-md border border-fuchsia-300 focus:outline-purple-500 px-3 py-1
   `
-
   const { cartProducts } = useContext(CartContext)
   const [products, setProducts] = useState([])
   const [domLoaded, setDomLoaded] = useState(false);
@@ -23,33 +21,11 @@ const CartPage = () => {
   const [address, setAddress] = useState("")
   const [contact, setContact] = useState("")
 
- 
-
-  // const [paypalInjected, setPaypalInjected] = useState(false)
-
-
-  // const addPayPalScript = () => {
-  //   if(window.paypal){
-  //     setPaypalInjected(true)
-  //     return
-  //   }
-  //   const script = document.createElement('script')
-  //   script.src = "https://www.paypal.com/sdk/js?client-id=AXenEMAinPWURlkjUFyzIuYI1QMjjXOS-flAFMdBLye_qDrW7A2BraxNypdkLl2RRlayCaHv5uU8ZQJ2"
-  //   script.type = 'text/javascript'
-  //   script.async = true
-  //   script.onload = () => setPaypalInjected(true)
-  //   document.body.appendChild(script)
-  // }
   var total = 0
   for(const productId of cartProducts){
     const price = products.find(p => p._id == productId)?.price || 0
     total+=price
 
-  }
-
-  const paypalProduct = {
-    description: "loram",
-    price: total
   }
 
   useEffect(() => {
@@ -63,33 +39,39 @@ const CartPage = () => {
     }
     
     setDomLoaded(true);
-    console.log(paypalProduct)
-    // addPayPalScript()
+
 
   }, [])
   
 
   return (
     
-    <>
-      {domLoaded && 
-      <div>
+    <Layout>
+      
+      <div className='py-32'>
 
-        <Nav/>
+     
 
-        <div className='flex w-4/5 mx-auto gap-10' >
+        <div className='flex w-4/5 mx-auto gap-10 text-white' >
           {cartProducts?.length > 0 && (
             <div className='w-3/4'>
               {products?.map((item, index) => <CardProduct key={index} product={item}/>)}
-              <div>
-                total: {total}
+              <div className='flex px-5 rounded-md text-white border border-purple-500 shadow-md bg-gray-900 py-2'>
+                <div className='mr-5'>
+                  Quantity: {cartProducts.length} units
+                </div>
+                <div className="divider w-[1px] mr-5 bg-gray-200/50"></div>
+                <div className=' mr-5'>
+                  Total: $ {total} (FJD)
+                </div>
+
               </div>
             </div> 
             )
           }
           
           {cartProducts?.length > 0 &&
-            <form method='post' action={'/api/checkout'} className='px-5 py-5 grow bg-blue-50 shadow-md '>
+            <form method='post' action={'/api/checkout'} className='px-5 py-5 grow h-min bg-gray-900 rounded-md border border-fuchsia-300 '>
               <h1 className='text-xl'>Order</h1>
               <div className='flex flex-col gap-2 my-3'>
                 <input 
@@ -128,7 +110,7 @@ const CartPage = () => {
               
               <button 
                 type='submit'
-                className='flex gap-2 items-center justify-center w-full bg-green-500 text-white py-1 rounded-md  px-5 text-center mt-auto'
+                className='flex gap-2 items-center justify-center w-full mt-8 bg-fuchsia-300 text-black py-1 rounded-md  px-5 text-center mt-auto'
                 
               >
                 <span>CheckOut</span>
@@ -136,7 +118,7 @@ const CartPage = () => {
                     <HiOutlineCash size={30} strokeWidth={1.2}/>
                 </span>
               </button>
-              <PayPalCheckOutButton props={paypalProduct}/>
+
             </form>
           }
 
@@ -148,13 +130,13 @@ const CartPage = () => {
         </div> 
 
       </div>
-      }
+      
       {!domLoaded && (
         <div>
           no products
         </div>
       )}
-    </>
+    </Layout>
     
   )
 }

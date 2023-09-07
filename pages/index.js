@@ -1,4 +1,6 @@
 import Featured from "@/components/Featured";
+import Hero from "@/components/Hero";
+import Layout from "@/components/Layout";
 import Nav from "@/components/Nav";
 import NewProducts from "@/components/NewProducts";
 import { mongooseConnect } from "@/lib/mongoose";
@@ -10,13 +12,13 @@ export default function Home({featurdProduct, recentProducts}) {
 
   return (
 
-    <>
+    <Layout>
       
-      <Nav />
+      <Hero/>
       <Featured product={featurdProduct}/>
       <NewProducts product={recentProducts} />
       
-    </>
+    </Layout>
 
   )
 }
